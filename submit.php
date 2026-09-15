@@ -5,7 +5,7 @@ header("Content-Type: application/json");
 // Database credentials
 $servername = "database-1.cxxxxxxx.ap-south-1.rds.amazonaws.com"; // Your RDS Endpoint
 $username   = "admin";                                           // RDS Username
-$password   = "YourMasterPassword";                               // RDS Password
+$password   = "Evaeid123";                               // RDS Password
 $dbname     = "portfolio_db";                                    // DB Name
 
 // Create connection
