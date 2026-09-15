@@ -726,7 +726,7 @@
                     </div>
                 </div>
                 
-                <form id="contactForm" onsubmit="event.preventDefault(); alert('Message routing simulated successfully!');">
+                <form id="contactForm">
                     <div class="form-row">
                         <div class="form-group">
                             <label for="name">Name</label>
@@ -757,6 +757,36 @@
 
     <script>
         // Intersection Observer to smoothly fade and lift elements into view as user scrolls
+        document.getElementById('contactForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    const formData = {
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        message: document.getElementById('message').value
+    };
+
+    try {
+        const response = await fetch('submit.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        });
+
+        const result = await response.json();
+
+        if (result.status === 'success') {
+            alert('Message transmitted and saved successfully!');
+            document.getElementById('contactForm').reset();
+        } else {
+            alert('Error: ' + result.message);
+        }
+    } catch (error) {
+        alert('Could not send message. Please check server connectivity.');
+    }
+});
         const observerOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
